@@ -28,11 +28,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js 14
-        uses: actions/setup-node@v3
+      - name: Setup Bun CLI
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: 14
-          cache: "yarn"
+            bun-version: latest
 
       - name: Install Node modules
         run: yarn ci
