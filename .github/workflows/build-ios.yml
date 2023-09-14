@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: 18
           cache: "yarn"
-          
+
       - name: Install node modules
         run: yarn install --frozen-lockfile --network-timeout 300000
 
@@ -55,23 +55,23 @@ jobs:
       - name: Install pod dependencies
         run: npx pod-install
 
-      - name: Build iOS (Release)
-        uses: yukiarrr/ios-build-action@v1.5.0
-        with:
-          project-path: ios/$PROJECT_NAME.xcodeproj
-          p12-base64: ${{ secrets.IOS_P12_BASE64 }}
-          mobileprovision-base64: ${{ secrets.IOS_MOBILEPROVISION_BASE64 }}
-          code-signing-identity: "Apple Distribution"
-          certificate-password: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
-          team-id: ${{ secrets.IOS_TEAM_ID }}
-          workspace-path: ios/$PROJECT_NAME.xcworkspace
-          output-path: "$APP_NAME.ipa"
+      # - name: Build iOS (Release)
+      #   uses: yukiarrr/ios-build-action@v1.5.0
+      #   with:
+      #     project-path: ios/$PROJECT_NAME.xcodeproj
+      #     p12-base64: ${{ secrets.IOS_P12_BASE64 }}
+      #     mobileprovision-base64: ${{ secrets.IOS_MOBILEPROVISION_BASE64 }}
+      #     code-signing-identity: "Apple Distribution"
+      #     certificate-password: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+      #     team-id: ${{ secrets.IOS_TEAM_ID }}
+      #     workspace-path: ios/$PROJECT_NAME.xcworkspace
+      #     output-path: "$APP_NAME.ipa"
 
-      - name: Upload build
-        uses: actions/upload-artifact@v3
-        with:
-          name: "$APP_NAME.ipa"
-          path: "$APP_NAME.ipa"
+      # - name: Upload build
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: "$APP_NAME.ipa"
+      #     path: "$APP_NAME.ipa"
 
   publish-to-appcenter:
     if: ${{ inputs.publish == true }}
