@@ -11,7 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Check out Git repository
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
             - name: Setup Bun CLI
               uses: oven-sh/setup-bun@v1
@@ -20,14 +20,11 @@ jobs:
 
             - name: Install dependencies
               run:  bun install --network-timeout 300000
+            
+            - name: Validate Gradle Wrapper
+              uses: gradle/wrapper-validation-action@v1
 
-            - name: Cache Gradle Wrapper
-              uses: actions/cache@v2
-              with:
-                path: ~/.gradle/wrapper
-                key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
-
-            - name: Cache Gradle Dependencies
+            - name: Cac he Gradle Dependencies
               uses: actions/cache@v2
               with:
                   path: ~/.gradle/caches
