@@ -32,13 +32,12 @@ jobs:
       - name: Setup repository
         uses: actions/checkout@v2
 
-      - name: Setup Bun CLI
-        uses: oven-sh/setup-bun@v1
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-            bun-version: latest
-
-      - name: Install dependencies
-        run: bun install
+        node-version: 18
+        cache: 'yarn'
+        cache-dependency-path: subdir/yarn-lock
         
       - name: Restore Pods cache
         uses: actions/cache@v3
