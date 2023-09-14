@@ -55,8 +55,8 @@ jobs:
                 path: ${{steps.sign_app.outputs.signedReleaseFile}}
             
             - name: Install Fastlane
-            run: gem install fastlane
-            
+              run: gem install fastlane
+
     publish-to-appcenter:
                     if: ${{ inputs.publish == true }}
                     runs-on: ubuntu-latest
