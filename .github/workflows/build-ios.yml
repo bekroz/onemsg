@@ -75,7 +75,7 @@ jobs:
   publish-to-appcenter:
     if: ${{ inputs.publish == true }}
     runs-on: ubuntu-latest
-    needs: build-ios
+    needs: build
     steps:
       - uses: actions/checkout@v2
 
