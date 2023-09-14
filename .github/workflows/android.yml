@@ -12,8 +12,10 @@ jobs:
         steps:
             - name: Check out Git repository
               uses: actions/checkout@v2
-            - name: Install Bun
-              run: npm install -g @bun/cli
+            - name: Setup Bun CLI
+              uses: oven-sh/setup-bun@v1
+              with:
+                bun-version: latest
             - name: Install dependencies
               run:  bun install --frozen-lockfile --network-timeout 300000
             - name: Make Gradlew Executable
